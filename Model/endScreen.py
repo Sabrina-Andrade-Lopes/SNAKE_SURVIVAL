@@ -9,9 +9,6 @@ from Const import *
 class EndScreen:
 
     def __init__(self, window):
-        """
-        Inicializa a tela final.
-        """
 
         self.window = window
         self.result = GAME_OVER
@@ -28,14 +25,6 @@ class EndScreen:
         )
 
     def run(self):
-        """
-        Executa a tela final.
-
-        Retorna:
-            MENU -> Voltar ao menu
-            EXIT -> Encerrar o jogo
-        """
-
         while True:
 
             for event in pygame.event.get():
@@ -56,9 +45,6 @@ class EndScreen:
             pygame.display.update()
 
     def draw(self):
-        """
-        Desenha a tela final.
-        """
 
         self.window.fill(COLOR_BLACK)
 

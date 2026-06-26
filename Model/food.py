@@ -20,10 +20,6 @@ class Food(Entity):
         self.color = COLOR_RED
 
     def spawn(self, snake):
-        """
-        Gera uma nova posição aleatória para a comida,
-        garantindo que ela não apareça sobre a cobra.
-        """
 
         while True:
 
@@ -34,9 +30,6 @@ class Food(Entity):
                 break
 
     def draw(self, window):
-        """
-        Desenha a comida.
-        """
 
         if self.image is not None:
 

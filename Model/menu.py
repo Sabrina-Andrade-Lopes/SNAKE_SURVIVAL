@@ -9,9 +9,6 @@ from Const import *
 class Menu:
 
     def __init__(self, window):
-        """
-        Inicializa o menu principal.
-        """
 
         self.window = window
 
@@ -27,13 +24,6 @@ class Menu:
         )
 
     def run(self):
-        """
-        Executa o menu principal.
-
-        Retorna:
-            "PLAY" -> Iniciar jogo
-            "EXIT" -> Encerrar aplicação
-        """
 
         while True:
 
@@ -55,9 +45,6 @@ class Menu:
             pygame.display.update()
 
     def draw(self):
-        """
-        Desenha o menu principal.
-        """
 
         self.window.fill(COLOR_BLACK)
 
