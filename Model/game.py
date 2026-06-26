@@ -1,24 +1,27 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 class Game:
+
     def __init__(self):
-        self.window = None
-        self.clock = None
-        self.running = None
-        self.state = None
 
-    def run(self, ):
-        pass
+        pygame.init()
 
-    def update(self, ):
-        pass
+        self.window = pygame.display.set_mode(
+            (WIN_WIDTH, WIN_HEIGHT)
+        )
 
-    def draw(self, ):
-        pass
+        pygame.display.set_caption(TITLE)
 
-    def check_win(self, ):
-        pass
+        self.clock = pygame.time.Clock()
 
-    def check_game_over(self, ):
-        pass
+        self.running = True
+
+        self.state = MENU
+
+        self.menu = Menu(self.window)
+        self.end_screen = EndScreen(self.window)
+
+        self.snake = Snake()
+        self.food = Food()
+        self.score = Score()
+        self.level = Level()
+
+        self.food.spawn(self.snake)

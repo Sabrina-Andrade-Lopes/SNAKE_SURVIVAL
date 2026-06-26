@@ -1,15 +1,61 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+import pygame
+
+from Const import *
+
+
 class Score:
+
     def __init__(self):
-        self.points = None
+        """
+        Inicializa o sistema de pontuação.
+        """
 
-    def add_point(self, ):
-        pass
+        self.points = 0
 
-    def get_points(self, ):
-        pass
+        self.font = pygame.font.SysFont(
+            FONT_NAME,
+            FONT_SIZE
+        )
+
+    def add_point(self):
+        """
+        Adiciona um ponto à pontuação.
+        """
+
+        self.points += 1
+
+    def get_points(self):
+        """
+        Retorna a pontuação atual.
+        """
+
+        return self.points
+
+    def reset(self):
+        """
+        Reinicia a pontuação.
+        """
+
+        self.points = 0
 
     def draw(self, window):
-        pass
+        """
+        Desenha a pontuação na tela.
+        """
+
+        text = self.font.render(
+            f"Pontuação: {self.points}/{TARGET_SCORE}",
+            True,
+            COLOR_WHITE
+        )
+
+        window.blit(
+            text,
+            (
+                HUD_MARGIN_X,
+                HUD_SCORE_Y
+            )
+        )
