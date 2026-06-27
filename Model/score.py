@@ -3,12 +3,18 @@
 
 import pygame
 
-from Const import *
+from const import *
 
 
 class Score:
+    """
+    Responsável pelo controle da pontuação do jogo.
+    """
 
     def __init__(self):
+        """
+        Inicializa a pontuação.
+        """
 
         self.points = 0
 
@@ -18,18 +24,30 @@ class Score:
         )
 
     def add_point(self):
+        """
+        Adiciona um ponto à pontuação.
+        """
 
         self.points += 1
 
     def get_points(self):
+        """
+        Retorna a pontuação atual.
+        """
 
         return self.points
 
     def reset(self):
+        """
+        Reinicia a pontuação.
+        """
 
         self.points = 0
 
     def draw(self, window):
+        """
+        Desenha a pontuação na tela.
+        """
 
         text = self.font.render(
             f"Pontuação: {self.points}/{TARGET_SCORE}",
