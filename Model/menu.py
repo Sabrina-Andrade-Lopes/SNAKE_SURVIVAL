@@ -7,14 +7,8 @@ from const import *
 
 
 class Menu:
-    """
-    Classe responsável pelo menu principal do jogo.
-    """
 
     def __init__(self, window):
-        """
-        Inicializa o menu.
-        """
 
         self.window = window
 
@@ -37,13 +31,6 @@ class Menu:
         self.clock = pygame.time.Clock()
 
     def run(self):
-        """
-        Executa o menu.
-
-        Retorna:
-            PLAY -> iniciar jogo
-            EXIT -> fechar aplicação
-        """
 
         running = True
 
@@ -69,15 +56,10 @@ class Menu:
             pygame.display.flip()
 
     def draw(self):
-        """
-        Desenha o menu principal.
-        """
 
         self.window.fill(COLOR_BLACK)
 
-        # ==========================
         # Título
-        # ==========================
 
         title = self.title_font.render(
             TITLE,
@@ -93,9 +75,7 @@ class Menu:
             )
         )
 
-        # ==========================
         # Opções do Menu
-        # ==========================
 
         options = [
 
@@ -154,12 +134,10 @@ class Menu:
 
             y += MENU_LINE_SPACING
 
-        # ==========================
         # Rodapé
-        # ==========================
 
         footer = self.info_font.render(
-            "Linguagem de Programação Aplicada - Snake Survival",
+            "Linguagem de Programação Aplicada",
             True,
             COLOR_WHITE
         )

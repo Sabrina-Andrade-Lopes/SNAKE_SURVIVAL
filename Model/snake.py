@@ -8,23 +8,14 @@ from const import *
 
 
 class Snake(Entity):
-    """
-    Classe responsável pela cobra.
-    """
 
     def __init__(self):
-        """
-        Inicializa a cobra.
-        """
 
         super().__init__()
 
         self.reset()
 
     def reset(self):
-        """
-        Reinicia a cobra para o estado inicial.
-        """
 
         self.body = [
             (5 * CELL_SIZE, 5 * CELL_SIZE),
@@ -39,9 +30,6 @@ class Snake(Entity):
         self.speed = LEVEL_1_SPEED
 
     def handle_input(self):
-        """
-        Captura as teclas pressionadas.
-        """
 
         keys = pygame.key.get_pressed()
 
@@ -58,9 +46,6 @@ class Snake(Entity):
             self.next_direction = RIGHT
 
     def move(self):
-        """
-        Move a cobra.
-        """
 
         self.direction = self.next_direction
 
@@ -83,16 +68,10 @@ class Snake(Entity):
         self.body.pop()
 
     def grow(self):
-        """
-        Faz a cobra crescer.
-        """
 
         self.body.append(self.body[-1])
 
     def change_direction(self, direction):
-        """
-        Altera a direção da cobra.
-        """
 
         if direction == UP and self.direction != DOWN:
             self.next_direction = UP
@@ -107,16 +86,10 @@ class Snake(Entity):
             self.next_direction = RIGHT
 
     def check_food_collision(self, food):
-        """
-        Verifica colisão com a comida.
-        """
 
         return self.body[0] == (food.x, food.y)
 
     def check_wall_collision(self):
-        """
-        Verifica colisão com as paredes.
-        """
 
         x, y = self.body[0]
 
@@ -128,16 +101,10 @@ class Snake(Entity):
         )
 
     def check_self_collision(self):
-        """
-        Verifica colisão com o próprio corpo.
-        """
 
         return self.body[0] in self.body[1:]
 
     def draw(self, window):
-        """
-        Desenha a cobra.
-        """
 
         for segment in self.body:
 

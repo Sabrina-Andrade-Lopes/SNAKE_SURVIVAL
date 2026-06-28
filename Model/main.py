@@ -5,9 +5,6 @@ from game import Game
 
 
 def main():
-    """
-    Ponto de entrada da aplicação.
-    """
 
     game = Game()
     game.run()

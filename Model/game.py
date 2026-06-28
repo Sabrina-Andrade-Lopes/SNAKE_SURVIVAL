@@ -15,9 +15,6 @@ from endscreen import EndScreen
 class Game:
 
     def __init__(self):
-        """
-        Inicializa o jogo.
-        """
 
         pygame.init()
 
@@ -46,9 +43,6 @@ class Game:
         self.food.spawn(self.snake)
 
     def reset_game(self):
-        """
-        Reinicia uma nova partida.
-        """
 
         self.snake.reset()
         self.score.reset()
@@ -57,9 +51,6 @@ class Game:
         self.food.spawn(self.snake)
 
     def run(self):
-        """
-        Loop principal do jogo.
-        """
 
         while self.running:
 
@@ -118,9 +109,6 @@ class Game:
         pygame.quit()
 
     def update(self):
-        """
-        Atualiza os elementos do jogo.
-        """
 
         self.snake.move()
 
@@ -157,9 +145,6 @@ class Game:
             self.state = GAME_OVER
 
     def draw(self):
-        """
-        Desenha todos os elementos do jogo.
-        """
 
         self.window.fill(COLOR_BLACK)
 
@@ -172,18 +157,12 @@ class Game:
         self.level.draw(self.window)
 
     def check_win(self):
-        """
-        Verifica a condição de vitória.
-        """
 
         return (
             self.score.get_points() >= TARGET_SCORE
         )
 
     def check_game_over(self):
-        """
-        Verifica a condição de derrota.
-        """
 
         if self.snake.check_wall_collision():
             return True

@@ -7,14 +7,8 @@ from const import *
 
 
 class EndScreen:
-    """
-    Classe responsável pela tela de fim de jogo.
-    """
 
     def __init__(self, window):
-        """
-        Inicializa a tela final.
-        """
 
         self.window = window
 
@@ -38,25 +32,11 @@ class EndScreen:
         )
 
     def set_result(self, result, score):
-        """
-        Define o resultado da partida.
-
-        Args:
-            result: WIN ou GAME_OVER
-            score: Pontuação final
-        """
 
         self.result = result
         self.score = score
 
     def run(self):
-        """
-        Executa a tela final.
-
-        Retorna:
-            MENU -> Volta ao menu principal.
-            EXIT -> Encerra a aplicação.
-        """
 
         while True:
 
@@ -78,15 +58,10 @@ class EndScreen:
             pygame.display.flip()
 
     def draw(self):
-        """
-        Desenha a tela final.
-        """
 
         self.window.fill(COLOR_BLACK)
 
-        # -----------------------------
         # Título
-        # -----------------------------
 
         if self.result == WIN:
 
@@ -112,9 +87,7 @@ class EndScreen:
             )
         )
 
-        # -----------------------------
         # Pontuação Final
-        # -----------------------------
 
         score_text = self.text_font.render(
             f"Pontuação Final: {self.score}",
@@ -130,9 +103,7 @@ class EndScreen:
             )
         )
 
-        # -----------------------------
         # Opções
-        # -----------------------------
 
         menu_text = self.info_font.render(
             "ENTER - Voltar ao Menu",
