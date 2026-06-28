@@ -98,14 +98,3 @@ FOOD_MARGIN = 1
 # Rodapé
 
 FOOTER_Y = WIN_HEIGHT - 35
-
-# Assets
-
-ASSETS_PATH = "../assets"
-
-BACKGROUND_GAME = ASSETS_PATH + "/background_game.png"
-BACKGROUND_MENU = ASSETS_PATH + "/background_menu.png"
-
-EAT_SOUND = ASSETS_PATH + "/eat.wav"
-GAME_OVER_SOUND = ASSETS_PATH + "/game_over.wav"
-BACKGROUND_MUSIC = ASSETS_PATH + "/background.mp3"
