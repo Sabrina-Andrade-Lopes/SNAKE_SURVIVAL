@@ -34,16 +34,22 @@ class Menu:
             SMALL_FONT_SIZE
         )
 
+        self.clock = pygame.time.Clock()
+
     def run(self):
         """
-        Executa o menu principal.
+        Executa o menu.
 
         Retorna:
             PLAY -> iniciar jogo
-            EXIT -> sair do jogo
+            EXIT -> fechar aplicação
         """
 
-        while True:
+        running = True
+
+        while running:
+
+            self.clock.tick(FPS)
 
             for event in pygame.event.get():
 
@@ -55,7 +61,7 @@ class Menu:
                     if event.key == pygame.K_RETURN:
                         return PLAY
 
-                    elif event.key == pygame.K_ESCAPE:
+                    if event.key == pygame.K_ESCAPE:
                         return EXIT
 
             self.draw()
@@ -69,9 +75,9 @@ class Menu:
 
         self.window.fill(COLOR_BLACK)
 
-        # -----------------------------
+        # ==========================
         # Título
-        # -----------------------------
+        # ==========================
 
         title = self.title_font.render(
             TITLE,
@@ -87,34 +93,55 @@ class Menu:
             )
         )
 
-        # -----------------------------
-        # Conteúdo do Menu
-        # -----------------------------
+        # ==========================
+        # Opções do Menu
+        # ==========================
 
-        lines = [
+        options = [
 
-            "========== CONTROLES ==========",
+            "PRESSIONE ENTER PARA JOGAR",
+
             "",
-            "W ou ↑  - Mover para cima",
-            "S ou ↓  - Mover para baixo",
-            "A ou ←  - Mover para esquerda",
-            "D ou →  - Mover para direita",
+
+            "CONTROLES",
+
+            "W ou ↑  - Cima",
+
+            "S ou ↓  - Baixo",
+
+            "A ou ←  - Esquerda",
+
+            "D ou →  - Direita",
+
             "",
-            f"Objetivo: alcançar {TARGET_SCORE} pontos.",
+
+            f"OBJETIVO: FAZER {TARGET_SCORE} PONTOS",
+
             "",
-            "ENTER - Iniciar Jogo",
-            "ESC - Sair"
+
+            "ESC - SAIR"
 
         ]
 
         y = MENU_START_Y
 
-        for line in lines:
+        for option in options:
+
+            color = COLOR_WHITE
+
+            if option == "CONTROLES":
+                color = COLOR_YELLOW
+
+            elif "ENTER" in option:
+                color = COLOR_GREEN
+
+            elif "ESC" in option:
+                color = COLOR_RED
 
             text = self.menu_font.render(
-                line,
+                option,
                 True,
-                COLOR_WHITE
+                color
             )
 
             self.window.blit(
@@ -127,20 +154,20 @@ class Menu:
 
             y += MENU_LINE_SPACING
 
-        # -----------------------------
+        # ==========================
         # Rodapé
-        # -----------------------------
+        # ==========================
 
         footer = self.info_font.render(
-            "Linguagem de Programação Aplicada - 2026",
+            "Linguagem de Programação Aplicada - Snake Survival",
             True,
-            COLOR_YELLOW
+            COLOR_WHITE
         )
 
         self.window.blit(
             footer,
             (
                 WIN_WIDTH // 2 - footer.get_width() // 2,
-                WIN_HEIGHT - 40
+                FOOTER_Y
             )
         )

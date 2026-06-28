@@ -8,7 +8,7 @@ from const import *
 
 class Score:
     """
-    Responsável pelo controle da pontuação do jogo.
+    Classe responsável pelo controle da pontuação do jogo.
     """
 
     def __init__(self):
@@ -49,14 +49,14 @@ class Score:
         Desenha a pontuação na tela.
         """
 
-        text = self.font.render(
+        score_text = self.font.render(
             f"Pontuação: {self.points}/{TARGET_SCORE}",
             True,
             COLOR_WHITE
         )
 
         window.blit(
-            text,
+            score_text,
             (
                 HUD_MARGIN_X,
                 HUD_SCORE_Y

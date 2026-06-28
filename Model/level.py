@@ -8,7 +8,7 @@ from const import *
 
 class Level:
     """
-    Responsável pelo controle dos níveis do jogo.
+    Classe responsável pelo controle dos níveis do jogo.
     """
 
     def __init__(self):
@@ -16,14 +16,12 @@ class Level:
         Inicializa o sistema de níveis.
         """
 
-        self.current_level = LEVEL_1
-        self.speed = LEVEL_1_SPEED
-        self.target_score = TARGET_SCORE
-
         self.font = pygame.font.SysFont(
             FONT_NAME,
             FONT_SIZE
         )
+
+        self.reset()
 
     def update(self, score):
         """
@@ -41,13 +39,8 @@ class Level:
             self.current_level = LEVEL_2
             self.speed = LEVEL_2_SPEED
 
-        elif score < TARGET_SCORE:
-
-            self.current_level = LEVEL_3
-            self.speed = LEVEL_3_SPEED
-
         else:
-            # Mantém o último nível após atingir a vitória
+
             self.current_level = LEVEL_3
             self.speed = LEVEL_3_SPEED
 
@@ -60,10 +53,17 @@ class Level:
 
     def get_speed(self):
         """
-        Retorna a velocidade atual do jogo.
+        Retorna a velocidade correspondente ao nível.
         """
 
         return self.speed
+
+    def get_target_score(self):
+        """
+        Retorna a pontuação necessária para vencer.
+        """
+
+        return TARGET_SCORE
 
     def reset(self):
         """
@@ -75,17 +75,17 @@ class Level:
 
     def draw(self, window):
         """
-        Exibe o nível atual na tela.
+        Desenha o nível atual na tela.
         """
 
-        text = self.font.render(
+        level_text = self.font.render(
             f"Nível: {self.current_level}",
             True,
             COLOR_WHITE
         )
 
         window.blit(
-            text,
+            level_text,
             (
                 HUD_MARGIN_X,
                 HUD_LEVEL_Y

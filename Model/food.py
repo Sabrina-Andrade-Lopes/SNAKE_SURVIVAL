@@ -4,11 +4,14 @@
 import random
 import pygame
 
-from Entity import Entity
+from entity import Entity
 from const import *
 
 
 class Food(Entity):
+    """
+    Classe responsável pela comida da cobra.
+    """
 
     def __init__(self):
         """
@@ -19,13 +22,10 @@ class Food(Entity):
 
         self.color = COLOR_RED
 
-        self.x = 0
-        self.y = 0
-
     def spawn(self, snake):
         """
         Gera uma nova posição aleatória para a comida,
-        evitando que ela apareça sobre a cobra.
+        evitando que apareça sobre a cobra.
         """
 
         while True:
@@ -45,37 +45,25 @@ class Food(Entity):
             if (self.x, self.y) not in snake.body:
                 break
 
-    def draw(self, window):
-        """
-        Desenha a comida na tela.
-        """
-
-        if self.image is not None:
-
-            window.blit(
-                self.image,
-                (
-                    self.x,
-                    self.y
-                )
-            )
-
-        else:
-
-            pygame.draw.rect(
-                window,
-                self.color,
-                (
-                    self.x,
-                    self.y,
-                    CELL_SIZE,
-                    CELL_SIZE
-                )
-            )
-
     def reset(self, snake):
         """
-        Reposiciona a comida para uma nova partida.
+        Reinicia a posição da comida.
         """
 
         self.spawn(snake)
+
+    def draw(self, window):
+        """
+        Desenha a comida.
+        """
+
+        pygame.draw.rect(
+            window,
+            self.color,
+            (
+                self.x,
+                self.y,
+                CELL_SIZE,
+                CELL_SIZE
+            )
+        )

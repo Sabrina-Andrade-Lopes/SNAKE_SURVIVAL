@@ -5,12 +5,12 @@ import pygame
 
 from const import *
 
-from snake import snake
-from food import food
-from score import score
-from level import level
-from menu import menu
-from endscreen import endscreen
+from snake import Snake
+from food import Food
+from score import Score
+from level import Level
+from menu import Menu
+from endscreen import EndScreen
 
 
 class Game:
