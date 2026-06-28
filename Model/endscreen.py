@@ -7,18 +7,24 @@ from const import *
 
 
 class EndScreen:
+    """
+    Tela de fim de jogo (Vitória ou Game Over).
+    """
 
-    def __init__(self, window):
+    def __init__(self, window, assets):
+        """
+        Inicializa a tela final.
+        """
 
         self.window = window
+        self.assets = assets
 
         self.result = GAME_OVER
         self.score = 0
 
         self.title_font = pygame.font.SysFont(
             FONT_NAME,
-            TITLE_FONT_SIZE,
-            bold=True
+            48
         )
 
         self.text_font = pygame.font.SysFont(
@@ -26,17 +32,21 @@ class EndScreen:
             FONT_SIZE
         )
 
-        self.info_font = pygame.font.SysFont(
-            FONT_NAME,
-            SMALL_FONT_SIZE
-        )
-
     def set_result(self, result, score):
+        """
+        Define o resultado da partida.
+        """
 
         self.result = result
         self.score = score
 
     def run(self):
+        """
+        Executa a tela final.
+
+        ENTER -> Menu
+        ESC -> Sair
+        """
 
         while True:
 
@@ -58,11 +68,17 @@ class EndScreen:
             pygame.display.flip()
 
     def draw(self):
+        """
+        Desenha a tela final.
+        """
 
-        self.window.fill(COLOR_BLACK)
+        # Fundo
+        self.window.blit(
+            self.assets.background_menu,
+            (0, 0)
+        )
 
-        # Título
-
+        # Mensagem principal
         if self.result == WIN:
 
             title = self.title_font.render(
@@ -79,56 +95,71 @@ class EndScreen:
                 COLOR_RED
             )
 
-        self.window.blit(
-            title,
-            (
-                WIN_WIDTH // 2 - title.get_width() // 2,
-                END_TITLE_Y
+        title_rect = title.get_rect(
+            center=(
+                WIN_WIDTH // 2,
+                140
             )
         )
 
-        # Pontuação Final
+        self.window.blit(
+            title,
+            title_rect
+        )
 
+        # Pontuação
         score_text = self.text_font.render(
-            f"Pontuação Final: {self.score}",
+            f"Pontuação: {self.score}",
             True,
             COLOR_WHITE
         )
 
-        self.window.blit(
-            score_text,
-            (
-                WIN_WIDTH // 2 - score_text.get_width() // 2,
-                END_MESSAGE_Y
+        score_rect = score_text.get_rect(
+            center=(
+                WIN_WIDTH // 2,
+                250
             )
         )
 
-        # Opções
+        self.window.blit(
+            score_text,
+            score_rect
+        )
 
-        menu_text = self.info_font.render(
+        # Voltar ao menu
+        menu_text = self.text_font.render(
             "ENTER - Voltar ao Menu",
             True,
             COLOR_WHITE
         )
 
-        self.window.blit(
-            menu_text,
-            (
-                WIN_WIDTH // 2 - menu_text.get_width() // 2,
-                END_MESSAGE_Y + 50
+        menu_rect = menu_text.get_rect(
+            center=(
+                WIN_WIDTH // 2,
+                340
             )
         )
 
-        exit_text = self.info_font.render(
+        self.window.blit(
+            menu_text,
+            menu_rect
+        )
+
+        # Sair
+        exit_text = self.text_font.render(
             "ESC - Sair",
             True,
-            COLOR_YELLOW
+            COLOR_WHITE
+        )
+
+        exit_rect = exit_text.get_rect(
+            center=(
+                WIN_WIDTH // 2,
+                390
+            )
         )
 
         self.window.blit(
             exit_text,
-            (
-                WIN_WIDTH // 2 - exit_text.get_width() // 2,
-                END_MESSAGE_Y + 80
-            )
+            exit_rect
         )

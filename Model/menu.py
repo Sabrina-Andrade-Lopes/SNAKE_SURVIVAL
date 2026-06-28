@@ -7,10 +7,14 @@ from const import *
 
 
 class Menu:
+    """
+    Tela inicial do jogo.
+    """
 
-    def __init__(self, window):
+    def __init__(self, window, assets):
 
         self.window = window
+        self.assets = assets
 
         self.title_font = pygame.font.SysFont(
             FONT_NAME,
@@ -57,9 +61,18 @@ class Menu:
 
     def draw(self):
 
-        self.window.fill(COLOR_BLACK)
+        # -------------------------
+        # Fundo do menu
+        # -------------------------
 
+        self.window.blit(
+            self.assets.background_menu,
+            (0, 0)
+        )
+
+        # -------------------------
         # Título
+        # -------------------------
 
         title = self.title_font.render(
             TITLE,
@@ -75,7 +88,9 @@ class Menu:
             )
         )
 
-        # Opções do Menu
+        # -------------------------
+        # Opções
+        # -------------------------
 
         options = [
 
@@ -134,7 +149,9 @@ class Menu:
 
             y += MENU_LINE_SPACING
 
+        # -------------------------
         # Rodapé
+        # -------------------------
 
         footer = self.info_font.render(
             "Linguagem de Programação Aplicada",
