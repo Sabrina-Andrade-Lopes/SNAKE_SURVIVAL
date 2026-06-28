@@ -4,7 +4,6 @@
 import pygame
 
 from const import *
-
 from snake import Snake
 from food import Food
 from score import Score
@@ -23,10 +22,7 @@ class Game:
         pygame.init()
 
         self.window = pygame.display.set_mode(
-            (
-                WIN_WIDTH,
-                WIN_HEIGHT
-            )
+            (WIN_WIDTH, WIN_HEIGHT)
         )
 
         pygame.display.set_caption(TITLE)
@@ -34,7 +30,6 @@ class Game:
         self.clock = pygame.time.Clock()
 
         self.running = True
-
         self.state = MENU
 
         # Telas
@@ -52,13 +47,11 @@ class Game:
 
     def reset_game(self):
         """
-        Reinicia todos os objetos do jogo.
+        Reinicia uma nova partida.
         """
 
         self.snake.reset()
-
         self.score.reset()
-
         self.level.reset()
 
         self.food.spawn(self.snake)
@@ -70,10 +63,6 @@ class Game:
 
         while self.running:
 
-            # -----------------------------
-            # MENU
-            # -----------------------------
-
             if self.state == MENU:
 
                 option = self.menu.run()
@@ -81,23 +70,17 @@ class Game:
                 if option == PLAY:
 
                     self.reset_game()
-
                     self.state = PLAY
 
                 elif option == EXIT:
 
                     self.running = False
 
-            # -----------------------------
-            # PLAY
-            # -----------------------------
-
             elif self.state == PLAY:
 
                 for event in pygame.event.get():
 
                     if event.type == pygame.QUIT:
-
                         self.running = False
 
                 self.snake.handle_input()
@@ -112,120 +95,100 @@ class Game:
                     self.level.get_speed()
                 )
 
-            # -----------------------------
-            # WIN
-            # -----------------------------
-
             elif self.state == WIN:
 
                 option = self.end_screen.run()
 
                 if option == MENU:
-
                     self.state = MENU
 
                 elif option == EXIT:
-
                     self.running = False
-
-            # -----------------------------
-            # GAME OVER
-            # -----------------------------
 
             elif self.state == GAME_OVER:
 
                 option = self.end_screen.run()
 
                 if option == MENU:
-
                     self.state = MENU
 
                 elif option == EXIT:
-
                     self.running = False
 
         pygame.quit()
 
-        def update(self):
-            """
-            Atualiza todos os elementos do jogo.
-            """
+    def update(self):
+        """
+        Atualiza os elementos do jogo.
+        """
 
-            # Move a cobra
-            self.snake.move()
+        self.snake.move()
 
-            # -----------------------------
-            # Colisão com a comida
-            # -----------------------------
+        if self.snake.check_food_collision(self.food):
 
-            if self.snake.check_food_collision(self.food):
-                self.snake.grow()
+            self.snake.grow()
 
-                self.score.add_point()
+            self.score.add_point()
 
-                self.level.update(
-                    self.score.get_points()
-                )
+            self.level.update(
+                self.score.get_points()
+            )
 
-                self.food.spawn(self.snake)
+            self.food.spawn(self.snake)
 
-            # -----------------------------
-            # Vitória
-            # -----------------------------
+        if self.check_win():
 
-            if self.check_win():
-                self.end_screen.set_result(
-                    WIN,
-                    self.score.get_points()
-                )
+            self.end_screen.set_result(
+                WIN,
+                self.score.get_points()
+            )
 
-                self.state = WIN
+            self.state = WIN
 
-                return
+            return
 
-            # -----------------------------
-            # Game Over
-            # -----------------------------
+        if self.check_game_over():
 
-            if self.check_game_over():
-                self.end_screen.set_result(
-                    GAME_OVER,
-                    self.score.get_points()
-                )
+            self.end_screen.set_result(
+                GAME_OVER,
+                self.score.get_points()
+            )
 
-                self.state = GAME_OVER
+            self.state = GAME_OVER
 
-        def draw(self):
-            """
-            Desenha todos os elementos do jogo.
-            """
+    def draw(self):
+        """
+        Desenha todos os elementos do jogo.
+        """
 
-            self.window.fill(COLOR_BLACK)
+        self.window.fill(COLOR_BLACK)
 
-            self.food.draw(self.window)
+        self.food.draw(self.window)
 
-            self.snake.draw(self.window)
+        self.snake.draw(self.window)
 
-            self.score.draw(self.window)
+        self.score.draw(self.window)
 
-            self.level.draw(self.window)
+        self.level.draw(self.window)
 
-        def check_win(self):
-            """
-            Verifica a condição de vitória.
-            """
+    def check_win(self):
+        """
+        Verifica a condição de vitória.
+        """
 
-            return self.score.get_points() >= TARGET_SCORE
+        return (
+            self.score.get_points() >= TARGET_SCORE
+        )
 
-        def check_game_over(self):
-            """
-            Verifica a condição de derrota.
-            """
+    def check_game_over(self):
+        """
+        Verifica a condição de derrota.
+        """
 
-            if self.snake.check_wall_collision():
-                return True
+        if self.snake.check_wall_collision():
+            return True
 
-            if self.snake.check_self_collision():
-                return True
+        if self.snake.check_self_collision():
+            return True
 
-            return False
+        return False
