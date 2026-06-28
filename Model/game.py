@@ -15,9 +15,6 @@ from assets import Assets
 
 
 class Game:
-    """
-    Classe principal responsável pelo controle do jogo.
-    """
 
     def __init__(self):
 
@@ -38,17 +35,13 @@ class Game:
 
         self.state = MENU
 
-        # ==========================
         # Assets (imagens e sons)
-        # ==========================
 
         self.assets = Assets()
 
         self.assets.play_music()
 
-        # ==========================
         # Telas
-        # ==========================
 
         self.menu = Menu(
             self.window,
@@ -60,9 +53,7 @@ class Game:
             self.assets
         )
 
-        # ==========================
         # Objetos do jogo
-        # ==========================
 
         self.snake = Snake()
 
@@ -75,9 +66,9 @@ class Game:
         self.food.spawn(self.snake)
 
     def reset_game(self):
-        """
-        Reinicia todos os objetos.
-        """
+
+       # Reinicia todos os objetos.
+
 
         self.snake.reset()
 
@@ -88,15 +79,13 @@ class Game:
         self.food.spawn(self.snake)
 
     def run(self):
-        """
-        Loop principal do jogo.
-        """
+
+       # Loop principal do jogo.
+
 
         while self.running:
 
-            # ==========================
             # MENU
-            # ==========================
 
             if self.state == MENU:
 
@@ -112,9 +101,7 @@ class Game:
 
                     self.running = False
 
-            # ==========================
             # PLAY
-            # ==========================
 
             elif self.state == PLAY:
 
@@ -136,9 +123,7 @@ class Game:
                     self.level.get_speed()
                 )
 
-            # ==========================
             # WIN
-            # ==========================
 
             elif self.state == WIN:
 
@@ -152,9 +137,7 @@ class Game:
 
                     self.running = False
 
-            # ==========================
             # GAME OVER
-            # ==========================
 
             elif self.state == GAME_OVER:
 
@@ -171,15 +154,13 @@ class Game:
         pygame.quit()
 
     def update(self):
-        """
-        Atualiza todos os elementos do jogo.
-        """
+
+       # Atualiza todos os elementos do jogo.
+
 
         self.snake.move()
 
-        # ==========================
         # Colisão com a comida
-        # ==========================
 
         if self.snake.check_food_collision(self.food):
 
@@ -195,9 +176,7 @@ class Game:
 
             self.food.spawn(self.snake)
 
-        # ==========================
         # Vitória
-        # ==========================
 
         if self.check_win():
 
@@ -210,9 +189,7 @@ class Game:
 
             return
 
-        # ==========================
         # Game Over
-        # ==========================
 
         if self.check_game_over():
 
@@ -226,9 +203,8 @@ class Game:
             self.state = GAME_OVER
 
     def draw(self):
-        """
-        Desenha todos os elementos na tela.
-        """
+
+       # Desenha todos os elementos na tela.
 
         self.window.blit(
             self.assets.background_game,
@@ -244,9 +220,8 @@ class Game:
         self.level.draw(self.window)
 
     def check_win(self):
-        """
-        Verifica condição de vitória.
-        """
+
+       # Verifica condição de vitória.
 
         return (
             self.score.get_points()
@@ -254,9 +229,8 @@ class Game:
         )
 
     def check_game_over(self):
-        """
-        Verifica condição de derrota.
-        """
+
+      #  Verifica condição de derrota.
 
         if self.snake.check_wall_collision():
 

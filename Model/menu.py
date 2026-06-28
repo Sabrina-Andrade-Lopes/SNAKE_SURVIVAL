@@ -7,9 +7,8 @@ from const import *
 
 
 class Menu:
-    """
-    Tela inicial do jogo.
-    """
+
+   # Tela inicial do jogo.
 
     def __init__(self, window, assets):
 
@@ -61,18 +60,14 @@ class Menu:
 
     def draw(self):
 
-        # -------------------------
         # Fundo do menu
-        # -------------------------
 
         self.window.blit(
             self.assets.background_menu,
             (0, 0)
         )
 
-        # -------------------------
         # Título
-        # -------------------------
 
         title = self.title_font.render(
             TITLE,
@@ -88,9 +83,7 @@ class Menu:
             )
         )
 
-        # -------------------------
         # Opções
-        # -------------------------
 
         options = [
 
@@ -149,9 +142,7 @@ class Menu:
 
             y += MENU_LINE_SPACING
 
-        # -------------------------
         # Rodapé
-        # -------------------------
 
         footer = self.info_font.render(
             "Linguagem de Programação Aplicada",

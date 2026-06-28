@@ -7,10 +7,6 @@ from const import *
 
 
 class Assets:
-    """
-    Classe responsável por carregar e disponibilizar
-    todas as imagens e sons do jogo.
-    """
 
     def __init__(self):
 
@@ -18,9 +14,7 @@ class Assets:
         if not pygame.mixer.get_init():
             pygame.mixer.init()
 
-        # ==========================
         # IMAGENS
-        # ==========================
 
         self.background_game = pygame.image.load(
             BACKGROUND_GAME
@@ -40,9 +34,7 @@ class Assets:
             (WIN_WIDTH, WIN_HEIGHT)
         )
 
-        # ==========================
         # SONS
-        # ==========================
 
         self.eat_sound = pygame.mixer.Sound(
             EAT_SOUND
@@ -52,9 +44,7 @@ class Assets:
             GAME_OVER_SOUND
         )
 
-        # ==========================
         # MÚSICA
-        # ==========================
 
         pygame.mixer.music.load(
             BACKGROUND_MUSIC
@@ -63,29 +53,17 @@ class Assets:
         pygame.mixer.music.set_volume(0.30)
 
     def play_music(self):
-        """
-        Inicia a música em loop.
-        """
 
         pygame.mixer.music.play(-1)
 
     def stop_music(self):
-        """
-        Para a música.
-        """
 
         pygame.mixer.music.stop()
 
     def pause_music(self):
-        """
-        Pausa a música.
-        """
 
         pygame.mixer.music.pause()
 
     def resume_music(self):
-        """
-        Continua a música.
-        """
 
         pygame.mixer.music.unpause()

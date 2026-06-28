@@ -7,14 +7,8 @@ from const import *
 
 
 class EndScreen:
-    """
-    Tela de fim de jogo (Vitória ou Game Over).
-    """
 
     def __init__(self, window, assets):
-        """
-        Inicializa a tela final.
-        """
 
         self.window = window
         self.assets = assets
@@ -33,20 +27,11 @@ class EndScreen:
         )
 
     def set_result(self, result, score):
-        """
-        Define o resultado da partida.
-        """
 
         self.result = result
         self.score = score
 
     def run(self):
-        """
-        Executa a tela final.
-
-        ENTER -> Menu
-        ESC -> Sair
-        """
 
         while True:
 
@@ -68,9 +53,6 @@ class EndScreen:
             pygame.display.flip()
 
     def draw(self):
-        """
-        Desenha a tela final.
-        """
 
         # Fundo
         self.window.blit(
