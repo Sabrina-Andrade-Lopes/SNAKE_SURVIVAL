@@ -16,7 +16,7 @@ GRID_HEIGHT = WIN_HEIGHT // CELL_SIZE
 
 # FPS
 
-FPS = 10
+FPS = 60
 
 # Estados do Jogo
 
